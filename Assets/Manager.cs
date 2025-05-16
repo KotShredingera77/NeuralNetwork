@@ -65,7 +65,7 @@ public class Manager : MonoBehaviour
         cars = new List<Bot>();
         for (int i = 0; i < populationSize; i++)
         {
-            Bot car = (Instantiate(prefab, new Vector3(0, 1.6f, -16), new Quaternion(0, 0, 1, 0))).GetComponent<Bot>();//создаем ботов
+            Bot car = (Instantiate(prefab, new Vector3(0, 1.6f, -45), new Quaternion(0, 0, 1, 0))).GetComponent<Bot>();//создаем ботов
             car.network = networks[i];//развертывает сеть для каждого учащегося
             car.tag = "Learner";
             cars.Add(car);
