@@ -30,7 +30,7 @@ public class Bot : MonoBehaviour
                 RaycastHit hit;//сюда запишется инфо о пересечении луча, если это пересечение будет
                 Ray Ray = new Ray(transform.position, newVector); //Новый луч из точки в направлении
 
-                if (Physics.Raycast(Ray, out hit, 100, raycastMask))//пускаем луч
+                if (Physics.Raycast(Ray, out hit, 10, raycastMask))//пускаем луч
                 {
                     input[i] = (10 - hit.distance) / 10;//возврщаем дистанцию , 1 значит  закрыть
                     //Debug.Log("дистанция "+hit.distance);
@@ -40,7 +40,7 @@ public class Bot : MonoBehaviour
                     input[i] = 0;//если ничего не обнаружено, вернет 0 в сеть
                 }
                 //просто для наглядности рисуем луч в окне Scene
-                Debug.DrawLine(Ray.origin, transform.position+ (newVector*100), Color.red);//hit.point
+                Debug.DrawLine(Ray.origin, transform.position+ (newVector*10), Color.red);//hit.point
             }
 
             float[] output = network.FeedForward(input);//Звонок в сеть для переадресации
