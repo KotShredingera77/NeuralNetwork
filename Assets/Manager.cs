@@ -21,18 +21,19 @@ public class Manager : MonoBehaviour
     //public List<Bot> Bots;
     public List<NeuralNetwork> networks;
     private List<Bot> cars;
+    public GameObject[] checkPoints;
 
     void Start()// вызывается перед обновлением первого кадра
     {
         File.Create("Assets/Save1.txt").Close();
         StreamWriter writer = new StreamWriter("Assets/Save1.txt", true);
         GameObject[] taggedObjects = GameObject.FindGameObjectsWithTag("CheckPoint");//Получить массив всех объектов по тегу
-        GameObject[] checkPoints = taggedObjects.OrderBy(go => go.name).ToArray();
-        for (int i = 0; i < checkPoints.Length; i++)
-        {
-            writer.WriteLine(checkPoints[i].name);
-        }
-        writer.Close();
+        checkPoints = taggedObjects.OrderBy(go => go.name).ToArray();
+        //for (int i = 0; i < checkPoints.Length; i++)
+        //{
+        //    writer.WriteLine(checkPoints[i].name);
+        //}
+        //writer.Close();
 
             //Debug.Log("Start");
             if (populationSize % 2 != 0)

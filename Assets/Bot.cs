@@ -11,13 +11,14 @@ public class Bot : MonoBehaviour
 
     private float[] input = new float[5];//input to the neural network
     public NeuralNetwork network;
-
+    private Manager manager;
     public int position;//Номер контрольной точки на трассе
     public bool collided;//сообщить если автомобиль разбился
 
     private void Start()
     {
         raycastMask = LayerMask.GetMask("Wall");
+        manager = GameObject.Find("Plane").GetComponent<Manager>();
     }
     void FixedUpdate()//FixedUpdate вызывается с постоянным интервалом
     {
@@ -55,11 +56,10 @@ private void OnTriggerEnter(Collider other)
 
     if (other.gameObject.tag == "CheckPoint")
        {
-            GameObject[] checkPoints = GameObject.FindGameObjectsWithTag("CheckPoint");//Получить массив всех объектов по тегу
-            
-            for (int i=0; i < checkPoints.Length; i++)
+            //GameObject[] checkPoints = GameObject.FindGameObjectsWithTag("CheckPoint");//Получить массив всех объектов по тегу
+            for (int i=0; i < manager.checkPoints.Length; i++)
             {   
-                if(other.gameObject == checkPoints[i] && i == (position + 1 + checkPoints.Length) % checkPoints.Length)
+                if(other.gameObject == manager.checkPoints[i] && i == (position + 1 + manager.checkPoints.Length) % manager.checkPoints.Length)
                           //&& - логическое и
                           //% - остаток от деления   например 13%10 = 3
                 //Стандартная проверка накопительного счетчика при прохождения ворот для движении по кругу          
@@ -84,10 +84,10 @@ void OnCollisionEnter(Collision collision)
         
         if(collision.collider.gameObject.layer == LayerMask.NameToLayer("CheckPoint"))//проверить, проезжает ли машина ворота
         {
-            GameObject[] checkPoints = GameObject.FindGameObjectsWithTag("CheckPoint");//Получить массив всех объектов по тегу
-            for (int i=0; i < checkPoints.Length; i++)
+            //GameObject[] checkPoints = GameObject.FindGameObjectsWithTag("CheckPoint");//Получить массив всех объектов по тегу
+            for (int i=0; i < manager.checkPoints.Length; i++)
             {
-                if(collision.collider.gameObject == checkPoints[i] && i == (position + 1 + checkPoints.Length) % checkPoints.Length)
+                if(collision.collider.gameObject == manager.checkPoints[i] && i == (position + 1 + manager.checkPoints.Length) % manager.checkPoints.Length)
                           //&& - логическое и
                           //% - остаток от деления   например 13%10 = 3
                 //Стандартная проверка накопительного счетчика при прохождения ворот для движении по кругу          
