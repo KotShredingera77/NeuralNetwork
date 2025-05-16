@@ -24,7 +24,7 @@ public class Manager : MonoBehaviour
     {
 
 
-        Debug.Log("Start");
+        //Debug.Log("Start");
         if (populationSize % 2 != 0)
             populationSize = 50;//если размер популяции нечетный, устанавливает его равным пятидесяти
 
