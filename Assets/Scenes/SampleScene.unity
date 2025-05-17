@@ -3346,13 +3346,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99bf0bb38a669084ba2ea474d8b5eb5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeframe: 50
+  timeframe: 200
   populationSize: 30
   prefab: {fileID: 3546829182983155201, guid: 818a72d38c788c14d85f1b8b76ac6db2, type: 3}
-  layers: 050000000300000002000000
+  layers: 050000000600000002000000
   MutationChance: 0.01
   MutationStrength: 0.5
-  Gamespeed: 1
+  Gamespeed: 10
   checkPoints: []
 --- !u!64 &268168570
 MeshCollider:
